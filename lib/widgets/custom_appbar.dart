@@ -81,7 +81,7 @@ class _MoveWindowArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onPanStart: (details) {
+      onScaleStart: (details) {
         windowManager.startDragging();
       },
       onDoubleTap: () async {

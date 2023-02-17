@@ -10,6 +10,7 @@ import 'package:pathplanner/widgets/path_editor/editors/edit_editor.dart';
 import 'package:pathplanner/widgets/path_editor/editors/graph_editor.dart';
 import 'package:pathplanner/widgets/path_editor/editors/marker_editor.dart';
 import 'package:pathplanner/widgets/path_editor/editors/measure_editor.dart';
+import 'package:pathplanner/widgets/path_editor/editors/grid_editor.dart';
 import 'package:pathplanner/widgets/path_editor/editors/path_following_editor.dart';
 import 'package:pathplanner/widgets/path_editor/editors/preview_editor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ enum EditorMode {
   preview,
   markers,
   measure,
+  grid,
   pathFollowing,
   graph,
 }
@@ -137,6 +139,15 @@ class _PathEditorState extends State<PathEditor> {
           prefs: widget.prefs,
           key: ValueKey(widget.path),
         );
+      case EditorMode.grid:
+        return GridEditor(
+          path: widget.path,
+          fieldImage: widget.fieldImage,
+          robotSize: widget.robotSize,
+          holonomicMode: widget.holonomicMode,
+          prefs: widget.prefs,
+          key: ValueKey(widget.path),
+        );
       case EditorMode.pathFollowing:
         return PathFollowingEditor(
           fieldImage: widget.fieldImage,
@@ -236,6 +247,24 @@ class _PathEditorState extends State<PathEditor> {
                             });
                           },
                     child: const Icon(Icons.straighten),
+                  ),
+                ),
+                const VerticalDivider(width: 1),
+                Tooltip(
+                  message: 'Grid',
+                  waitDuration: const Duration(milliseconds: 500),
+                  child: MaterialButton(
+                    height: 50,
+                    minWidth: 50,
+                    onPressed: _mode == EditorMode.grid
+                        ? null
+                        : () {
+                            UndoRedo.clearHistory();
+                            setState(() {
+                              _mode = EditorMode.grid;
+                            });
+                          },
+                    child: const Icon(Icons.grid_3x3_sharp),
                   ),
                 ),
                 const VerticalDivider(width: 1),

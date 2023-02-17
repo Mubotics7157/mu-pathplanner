@@ -109,7 +109,7 @@ class _MarkerCardState extends State<MarkerCard> {
             visible: widget.marker != null,
             child: GestureDetector(
               // Override gesture detector on UI elements so they wont cause the card to move
-              onPanStart: (details) {},
+              onScaleStart: (details) {},
               child: IconButton(
                 tooltip: 'Delete Marker',
                 icon: Icon(
@@ -131,7 +131,7 @@ class _MarkerCardState extends State<MarkerCard> {
   Widget _buildNameFields() {
     return GestureDetector(
       // Override gesture detector on UI elements so they wont cause the card to move
-      onPanStart: (details) {},
+      onScaleStart: (details) {},
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, left: 4.0, right: 4.0),
         child: Column(
@@ -209,7 +209,7 @@ class _MarkerCardState extends State<MarkerCard> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return GestureDetector(
-      onPanStart: (details) {},
+      onScaleStart: (details) {},
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0),
         child: InputSlider(
@@ -255,7 +255,7 @@ class _MarkerCardState extends State<MarkerCard> {
 
     return GestureDetector(
       // Override gesture detector on UI elements so they wont cause the card to move
-      onPanStart: (details) {},
+      onScaleStart: (details) {},
       child: Visibility(
         visible: widget.marker == null,
         child: Padding(

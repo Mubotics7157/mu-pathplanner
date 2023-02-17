@@ -41,19 +41,19 @@ class _MeasureEditorState extends State<MeasureEditor> {
         Center(
           child: InteractiveViewer(
             child: GestureDetector(
-              onPanStart: (DragStartDetails details) {
+              onScaleStart: (ScaleStartDetails details) {
                 setState(() {
                   _measureStart = Point(
-                      _xPixelsToMeters(details.localPosition.dx),
-                      _yPixelsToMeters(details.localPosition.dy));
+                      _xPixelsToMeters(details.localFocalPoint.dx),
+                      _yPixelsToMeters(details.localFocalPoint.dy));
                   _measureEnd = null;
                 });
               },
-              onPanUpdate: (DragUpdateDetails details) {
+              onScaleUpdate: (ScaleUpdateDetails details) {
                 setState(() {
                   _measureEnd = Point(
-                      _xPixelsToMeters(details.localPosition.dx),
-                      _yPixelsToMeters(details.localPosition.dy));
+                      _xPixelsToMeters(details.localFocalPoint.dx),
+                      _yPixelsToMeters(details.localFocalPoint.dy));
                 });
               },
               child: Padding(

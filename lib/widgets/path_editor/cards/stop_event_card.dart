@@ -275,7 +275,7 @@ class _StopEventCardState extends State<StopEventCard> {
   Widget _buildNameFields() {
     return GestureDetector(
       // Override gesture detector on UI elements so they wont cause the card to move
-      onPanStart: (details) {},
+      onScaleStart: (details) {},
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, left: 4.0, right: 4.0),
         child: Column(

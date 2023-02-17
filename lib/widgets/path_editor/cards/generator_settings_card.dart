@@ -50,7 +50,7 @@ class _GeneratorSettingsCardState extends State<GeneratorSettingsCard> {
           const SizedBox(height: 12),
           // Override gesture detector on UI elements so they wont cause the card to move
           GestureDetector(
-            onPanStart: (details) {},
+            onScaleStart: (details) {},
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,

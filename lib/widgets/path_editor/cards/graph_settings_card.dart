@@ -57,7 +57,7 @@ class _GraphSettingsCardState extends State<GraphSettingsCard> {
       prefs: widget.prefs,
       // Override gesture detector on UI elements so they wont cause the card to move
       child: GestureDetector(
-        onPanStart: (details) {},
+        onScaleStart: (details) {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,

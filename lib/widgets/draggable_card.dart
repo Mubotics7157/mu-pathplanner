@@ -57,18 +57,18 @@ class _DraggableCardState extends State<DraggableCard> {
       bottom: _cardPosition.bottom,
       child: GestureDetector(
         key: _key,
-        onPanStart: (DragStartDetails details) {
-          _dragStartLocal = details.localPosition;
+        onScaleStart: (ScaleStartDetails details) {
+          _dragStartLocal = details.localFocalPoint;
         },
-        onPanEnd: (DragEndDetails details) {
+        onScaleEnd: (ScaleEndDetails details) {
           _dragStartLocal = null;
           widget.prefs.setString(widget.prefsKey, jsonEncode(_cardPosition));
         },
-        onPanUpdate: (DragUpdateDetails details) {
+        onScaleUpdate: (ScaleUpdateDetails details) {
           if (_dragStartLocal != null) {
             RenderBox cardRenderBox =
                 _key.currentContext?.findRenderObject() as RenderBox;
-            Offset newGlobalPos = details.globalPosition - _dragStartLocal!;
+            Offset newGlobalPos = details.focalPoint - _dragStartLocal!;
             Size cardSize = cardRenderBox.size;
 
             RenderBox stackRenderBox =

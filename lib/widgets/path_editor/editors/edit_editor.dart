@@ -206,11 +206,11 @@ class _EditEditorState extends State<EditEditor> {
               _selectedPointIndex = -1;
             });
           },
-          onPanStart: (details) {
+          onScaleStart: (details) {
             for (Waypoint w in widget.path.waypoints.reversed) {
               if (w.startDragging(
-                  _xPixelsToMeters(details.localPosition.dx),
-                  _yPixelsToMeters(details.localPosition.dy),
+                  _xPixelsToMeters(details.localFocalPoint.dx),
+                  _yPixelsToMeters(details.localFocalPoint.dy),
                   _pixelsToMeters(PathPainterUtil.uiPointSizeToPixels(
                       25, _EditPainter.scale, widget.fieldImage)),
                   _pixelsToMeters(PathPainterUtil.uiPointSizeToPixels(
@@ -225,7 +225,7 @@ class _EditEditorState extends State<EditEditor> {
               }
             }
           },
-          onPanUpdate: (details) {
+          onScaleUpdate: (details) {
             if (_draggedPoint != null) {
               setState(() {
                 _draggedPoint!.dragUpdate(
@@ -233,16 +233,16 @@ class _EditEditorState extends State<EditEditor> {
                         88 +
                             (widget.fieldImage.defaultSize.width *
                                 _EditPainter.scale),
-                        max(8, details.localPosition.dx))),
+                        max(8, details.localFocalPoint.dx))),
                     _yPixelsToMeters(min(
                         88 +
                             (widget.fieldImage.defaultSize.height *
                                 _EditPainter.scale),
-                        max(8, details.localPosition.dy))));
+                        max(8, details.localFocalPoint.dy))));
               });
             }
           },
-          onPanEnd: (details) {
+          onScaleEnd: (details) {
             if (_draggedPoint != null) {
               _draggedPoint!.stopDragging();
               int index = widget.path.waypoints.indexOf(_draggedPoint!);
